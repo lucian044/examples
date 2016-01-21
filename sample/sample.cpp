@@ -4,5 +4,5 @@
 #include <iostream>
 
 int main(int argc, char* argv[]) {
-  std::cout << "This is a sample example!" <<std::endl;
+  std::cout << "This is a sample example!!!" <<std::endl;
 }
