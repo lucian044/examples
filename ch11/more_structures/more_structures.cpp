@@ -144,4 +144,18 @@ int main() {
 
    */
   n.b.a = 12;
+  n.b.b = "test";
+  n.b.c = n.b.d = 10;
+
+  // make another Nested structure
+  // using an initializer list
+ 
+  Nested init_list{ 10, { 2, "y", 5, 7 } };
+  
+  //output the init_list 
+  std::cout << "a = " << init_list.a << std::endl
+	    << "b.a" << init_list.b.a << std::endl
+	    << "b.b" << init_list.b.b << std::endl
+	    << "b.c" << init_list.b.c << std::endl
+	    << "b.d" << init_list.b.d << std::endl;
 }
