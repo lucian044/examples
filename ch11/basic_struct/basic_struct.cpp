@@ -2,6 +2,8 @@
 // Declaration and Definition of a structure
 // Accessing member variables
 // Outputing member variables
+// The dot operator
+// Initializing member variables
 
 #include <iostream>
 #include <string>
