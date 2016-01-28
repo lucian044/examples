@@ -26,3 +26,7 @@
 *.exe
 *.out
 *.app
+
+
+# output files/executables (named out in Makefile)
+out

@@ -52,7 +52,7 @@ int main() {
   // s->p , dereference s, and give acces to the member p
   // at this point, * deferences that pointer p
 
-  *x1->b = 50;
+  *x1.b = 50;
   // output what z is now
   std::cout << "z = " << z << std::endl;
 }
