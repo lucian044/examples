@@ -8,7 +8,7 @@
 // *s->p     dereference a member pointr from a pointer
 // *(*s).p   same as above
 
-// . then *
+// -> then . then *
 
 #include <iostream>
 
@@ -17,42 +17,39 @@ struct X {
   int* b;
 };
 
-struct Y {
-  int c;
-  X* d;
-};
-
 int main() {
 
   int z = 10; // for use later
 
-  // define variables for both types of structures
+  // define a variable for the structure X
   X x1{42, &z};
-  Y y1{15, &x1};
 
-  // accessing members from a pointer to a structure
-  
+  // create a pointer to the instance of X for use with accessing members from a pointer to a structure
   X* xp = &x1;
-
-  // print our the a member of xp
+  
+  // print out the a member of xp
+  // the parentheses force the * operator to derefence xp, then the dot operator accesses the member a
   std::cout << "(*xp).a = " << (*xp).a << std::endl;
   
   // xp->a == (*xp).a
+  // the -> shorthand operator is equivalent and easier to use
   std::cout << "xp->a = " << xp->a << std::endl;
 
   // *a.p dereference a pointer from a variable
+  // the dot operator accesses the member b, which is a pointer
+  // the * operator then dereferences it
   *x1.b = 30;
 
   // output what z is now
   std::cout << "z = " << z << std::endl;
 
-  //*s->p dereference a member pointer from a pointer
+  //*s->p dereferences a member pointer from a pointer to the structure
   // order of operations -> happens first
 
-  // s->p , dereference s, and give acces to the member p
+  // s->p , dereferences s, and gives access to the member p
   // at this point, * deferences that pointer p
+  *xp->b = 50;
 
-  *x1.b = 50;
   // output what z is now
   std::cout << "z = " << z << std::endl;
 }
