@@ -52,4 +52,11 @@ int main() {
 
   // output what z is now
   std::cout << "z = " << z << std::endl;
+
+  // if we want to do the same thing without the shorthand
+  *(*xp).b = 70;
+
+  // output z with the new value
+  std::cout << "z = " << z << std::endl;
+
 }
