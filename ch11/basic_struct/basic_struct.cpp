@@ -36,7 +36,7 @@ int main() {
   std::cout << "The name of our student is " << st.name << "." << std::endl;
   std::cout << "The ID of our student is " << st.ID << "." << std::endl;
   
-  std::cout << "------------ after initilization ------------ " << slizedtd::endl;
+  std::cout << "------------ after initilization ------------ " << std::endl;
 
   // Initialize the member variables for the st variable using the dot operator
   // set the age to 35, name to "Tony Deeter" an ID to "12345678"
