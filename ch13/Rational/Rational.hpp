@@ -6,9 +6,10 @@
   Even if it is included more than once
 */
 
-#ifndef RATIONALL_HPP
-#define RATIONALL_HPP
+#ifndef RATIONAL_HPP
+#define RATIONAL_HPP
 
+#include <iostream>
 #include <string>
 
 class Rational {
@@ -49,11 +50,43 @@ public:
   // parameterized constructor
   Rational(int n, int d);
 
+  // parameterized constructor with one parameter
+
   // return a string version of the Rational number
+
+  // overloaded operators
+  // these define how operators interact with our member variables
+
+  // binary operators have one parameter, the other being itself
+  // these examples do not change the object, they return a newly created one
+  // the const at the end guarantees this
+  // these handle cases where the calling instance is on the left side of the operator
+  // if the Rational is on the right, those functions cannot be member functions
+  // and must be declared outside of the class
+
+  // binary operators that return a reference to the object
+  // the operators change the
+
+
+  //unary operators operate on a single operand
+
+  // prefix
+
+  // postfix, we have a dummy parameter to diferentiate between pre and post fix
+
 
   // this function returns the greatest common denominator of two integers
   int gcd(int a, int b);
 
 };
+
+// we will overload the << operator for use with cout and other streams
+// this is NOT a member funtion so it needs to be declared outside of the class
+// in the future we could make this a friend function
+// this must be implemented in the cpp file
+
+// overloaded operators where the data type on the left is a non member
+
+// overloading the + operator when the int is on the left
 
 #endif
