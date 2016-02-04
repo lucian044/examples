@@ -1,0 +1,26 @@
+Object Oriented Programming - centered on creating objects
+
+Object - contains both data (attributes) and functions (procedures) to handle that data
+  it does this through the use of encapsulation
+
+Encapsulation - combining data and code into a single object
+
+Data Hiding - allows an object to prevent access to its members
+
+Class - code that specifies the attributes and functions that an object may have
+  - the ONLY difference between a struct and a class is the default access specification
+
+Access Specification - determine how class (or struct) members may be accessed
+  - public: can be accessed outside of the class member functions
+  - private: - can only be accessed by class members
+  - By default, all class members are private
+  - By default, all struct members are public
+
+Member Functions - functions declared within the class or struct
+- has access to all of the objects members
+- use const AFTER the declaration specifies the function will not the change the data in the calling object
+  - void this() const;
+
+Accessors and Mutators - used to retrieve and set private members
+  -Accessors retrieve member data, usually used with const
+  -Mutators set the member data
