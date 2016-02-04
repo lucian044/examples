@@ -27,6 +27,11 @@
 *.out
 *.app
 
+# Emacs Backup Files
+*~
+
+# Build Directory
+build/
 
 # output files/executables (named out in Makefile)
 out
