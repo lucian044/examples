@@ -51,25 +51,28 @@ public:
   Rational(int n, int d);
 
   // parameterized constructor with one parameter
+  Rational(int n);
 
   // return a string version of the Rational number
+  std::string str();
 
   // overloaded operators
   // these define how operators interact with our member variables
 
-  // binary operators have one parameter, the other being itself
+  // binary member operators have one parameter, the other being itself
   // these examples do not change the object, they return a newly created one
   // the const at the end guarantees this
   // these handle cases where the calling instance is on the left side of the operator
   // if the Rational is on the right, those functions cannot be member functions
   // and must be declared outside of the class
+  Rational operator+(Rational r);
 
   // binary operators that return a reference to the object
   // the operators change the
 
 
-  //unary operators operate on a single operand
-
+  // unary operators operate on a single operand
+  Rational operator-();
   // prefix
 
   // postfix, we have a dummy parameter to diferentiate between pre and post fix
@@ -84,8 +87,10 @@ public:
 // this is NOT a member funtion so it needs to be declared outside of the class
 // in the future we could make this a friend function
 // this must be implemented in the cpp file
+std::ostream& operator<<(std::ostream& strm, Rational r);
 
 // overloaded operators where the data type on the left is a non member
+Rational operator+(int i, Rational r);
 
 // overloading the + operator when the int is on the left
 
