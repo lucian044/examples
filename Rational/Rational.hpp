@@ -65,7 +65,6 @@ public:
   // these handle cases where the calling instance is on the left side of the operator
   // if the Rational is on the right, those functions cannot be member functions
   // and must be declared outside of the class
-  Rational operator+(Rational r);
 
   // binary operators that return a reference to the object
   // the operators change the
@@ -74,9 +73,9 @@ public:
   // unary operators operate on a single operand
   Rational operator-();
   // prefix
-
+  Rational operator++();
   // postfix, we have a dummy parameter to diferentiate between pre and post fix
-
+  Rational operator++(int);
 
   // this function returns the greatest common denominator of two integers
   int gcd(int a, int b);
@@ -88,6 +87,21 @@ public:
 // in the future we could make this a friend function
 // this must be implemented in the cpp file
 std::ostream& operator<<(std::ostream& strm, Rational r);
+
+// the operator+
+Rational operator+(Rational r1, Rational r2);
+// the rest of the operators, you can tell what they are
+Rational operator-(Rational r1, Rational r2);
+Rational operator*(Rational r1, Rational r2);
+Rational operator/(Rational r1, Rational r2);
+
+// relational operators
+bool operator<(Rational r1, Rational r2);
+bool operator>(Rational r1, Rational r2);
+bool operator<=(Rational r1, Rational r2);
+bool operator>=(Rational r1, Rational r2);
+bool operator==(Rational r1, Rational r2);
+bool operator!=(Rational r1, Rational r2);
 
 // overloaded operators where the data type on the left is a non member
 Rational operator+(int i, Rational r);

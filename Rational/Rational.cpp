@@ -12,9 +12,7 @@
 // the default constructor handles what happens when no parameters are passed
 // we MUST make one if we plan to create instances with no parameters becasue we
 // have also defined a parameterized constructor below
-Rational::Rational() {
-  num = den = 1;
-}
+Rational::Rational() : num{1}, den{1} {}
 
 // we will use an initialization list within out constructors
 // they appear after the parentheses and before the opening brace
@@ -55,14 +53,14 @@ std::string Rational::str() {
   if (num < 0) {
     strm << "-" << operator-().str();
   }
-  if (den == 1) {
+  else if (den == 1) {
     strm << num;
-  } 
+  }
   else if (num > den) {
     int whole = num / den;
     int rem = num % den;
     strm << whole << " " << rem << "/" << den;
-  } 
+  }
   else {
     strm << num << "/" << den;
   }
@@ -70,18 +68,67 @@ std::string Rational::str() {
 }
 
 // binary operator implementations
-Rational Rational::operator+(Rational r) {
-  int cd = den * r.den;
-  int new_num = (num * r.den) + (r.num * den);
+Rational operator+(Rational r1, Rational r2) {
+  int cd = r1.get_denominator() * r2.get_denominator();  
+  int new_num = (r1.get_numerator() * r2.get_denominator()) + (r2.get_numerator() * r1.get_denominator());
   return Rational(new_num, cd);
 }
 
+// other math operations
+// these are outside the class so you dont need scope resolution, but you need two operands
+Rational operator-(Rational r1, Rational r2) {
+  return r1 + -r2;
+}
+
+Rational operator*(Rational r1, Rational r2) {
+  return Rational(r1.get_numerator() * r2.get_numerator(), r1.get_denominator() * r2.get_denominator());
+}
+
+Rational operator/(Rational r1, Rational r2) {
+  return r1 * Rational(r2.get_denominator(), r2.get_numerator());
+}
+
+bool operator<(Rational r1, Rational r2) {
+  return (r1 - r2).get_numerator() < 0;
+}
+
+bool operator<=(Rational r1, Rational r2) {
+  return (r1 - r2).get_numerator() <= 0;
+}
+
+bool operator>(Rational r1, Rational r2) {
+  return (r1 - r2).get_numerator() > 0;
+}
+
+bool operator>=(Rational r1, Rational r2) {
+  return (r1 - r2).get_numerator() >= 0;
+}
+
+bool operator==(Rational r1, Rational r2) {
+  return (r1 - r1).get_numerator() == 0;
+}
+
+bool operator!=(Rational r1, Rational r2) {
+  return !(r1 == r2);
+}
 
 // unary operator implementations
 Rational Rational::operator-() {
   return Rational(-num, den);
 }
 
+// prefix ++
+Rational Rational::operator++() {
+  *this = *this + Rational(1);
+  return *this;
+}
+
+// postfix
+Rational Rational::operator++(int) {
+  Rational temp = *this;
+  *this = *this + Rational(1);
+  return temp;
+}
 
 // the implementation of the overloaded << operator
 // this puts the str representation of a Rational onto the ostream on the left side
@@ -89,7 +136,7 @@ Rational Rational::operator-() {
 std::ostream& operator<<(std::ostream& strm, Rational r) {
   strm << r.str();
   return strm;
-} 
+}
 
 // the implementation of the + operator for int on the left side of the operator
 // we will use the implementation for Rational + i that we have already created
