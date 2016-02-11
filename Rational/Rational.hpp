@@ -66,9 +66,32 @@ public:
   // if the Rational is on the right, those functions cannot be member functions
   // and must be declared outside of the class
 
+  /*
+  this is how you COULD put the non instance changing operations inside the class
+  and guarantee that the instance didnt get changed
+  
+  // hpp section
+  Rational operator+(double) const;
+
+  // cpp section
+  Rational Rational::operator+(double t) const {
+  }
+  */
+  
+  // these return references to the calling instance for chaining operator purposes
+  Rational& operator+=(Rational r);
+  Rational& operator-=(Rational r);
+  Rational& operator*=(Rational r);
+  Rational& operator/=(Rational r);
+
+  // the same functions using an integer for the parameter
+  Rational& operator+=(int i);
+  Rational& operator-=(int i);
+  Rational& operator*=(int i);
+  Rational& operator/=(int i);
+
   // binary operators that return a reference to the object
   // the operators change the
-
 
   // unary operators operate on a single operand
   Rational operator-();
@@ -95,6 +118,16 @@ Rational operator-(Rational r1, Rational r2);
 Rational operator*(Rational r1, Rational r2);
 Rational operator/(Rational r1, Rational r2);
 
+Rational operator+(Rational r1, int i);
+Rational operator-(Rational r1, int i);
+Rational operator*(Rational r1, int i);
+Rational operator/(Rational r1, int i);
+
+Rational operator+(int i, Rational r);
+Rational operator-(int i, Rational r);
+Rational operator*(int i, Rational r);
+Rational operator/(int i, Rational r);
+
 // relational operators
 bool operator<(Rational r1, Rational r2);
 bool operator>(Rational r1, Rational r2);
@@ -102,10 +135,5 @@ bool operator<=(Rational r1, Rational r2);
 bool operator>=(Rational r1, Rational r2);
 bool operator==(Rational r1, Rational r2);
 bool operator!=(Rational r1, Rational r2);
-
-// overloaded operators where the data type on the left is a non member
-Rational operator+(int i, Rational r);
-
-// overloading the + operator when the int is on the left
 
 #endif

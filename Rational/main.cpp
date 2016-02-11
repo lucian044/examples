@@ -80,4 +80,25 @@ int main () {
   std::cout << "\nPrint the result of (0/12) != (0/13)." << std::endl;
   std::cout << (Rational(0, 12) != Rational(0,13) ? "true" : "false") << std::endl;
 
+  std::cout << "\nPrint the result of (1/12) += (2/12)." << std::endl;
+  Rational t(1, 12);
+  t += Rational(2,12);
+  std::cout << t << std::endl;
+
+  std::cout << "\nPrint the result of (1/4) -= (16/1)." << std::endl;
+  t -= Rational(16, 1);
+  std::cout << t << std::endl;
+
+  std::cout << "\nPrint the result of -(15 3/4) *= (2/1)." << std::endl;
+  t *= Rational(2, 1);
+  std::cout << t << std::endl;
+
+  std::cout << "\nPrint the result of -(31 1/2) /= (1/2)." << std::endl;
+  t /= Rational(1, 2);
+  std::cout << t << std::endl;
+
+  std::cout << "\nPrint the result of (2/3 *= ((1/2 + 4) + (2/3 / 4)))." << std::endl;
+  t = Rational(2, 3);
+  t *= ((Rational(1, 2) + 4) + (Rational(2, 3) / 4));
+  std::cout << t << std::endl;
 }

@@ -68,10 +68,66 @@ std::string Rational::str() {
 }
 
 // binary operator implementations
+Rational& Rational::operator+=(Rational r) {
+  // we need to add ourself to the parameter
+  // create a new Rational with the result of addition
+  // set *this equal to that new Rational
+  // return a reference to ourself
+  return (*this = *this + r);
+}
+
+Rational& Rational::operator-=(Rational r) {
+  // see operator+= for 
+  return (*this = *this - r);
+}
+
+Rational& Rational::operator*=(Rational r) {
+  // see operator+= for 
+  return (*this = *this * r);
+}
+
+Rational& Rational::operator/=(Rational r) {
+  // see operator+= for 
+  return (*this = *this / r);
+}
+
+Rational& Rational::operator+=(int i) {
+  // we need to add ourself to the parameter
+  // create a new Rational with the result of addition
+  // set *this equal to that new Rational
+  // return a reference to ourself
+  return (*this = *this + i);
+}
+
+Rational& Rational::operator-=(int i) {
+  // see operator+= for 
+  return (*this = *this - i);
+}
+
+Rational& Rational::operator*=(int i) {
+  // see operator+= for 
+  return (*this = *this * i);
+}
+
+Rational& Rational::operator/=(int i) {
+  // see operator+= for 
+  return (*this = *this / i);
+}
+
+
+
 Rational operator+(Rational r1, Rational r2) {
   int cd = r1.get_denominator() * r2.get_denominator();  
   int new_num = (r1.get_numerator() * r2.get_denominator()) + (r2.get_numerator() * r1.get_denominator());
   return Rational(new_num, cd);
+}
+
+Rational operator+(Rational r, int i) {
+  return r + Rational(i);
+}
+
+Rational operator+(int i, Rational r) {
+  return r + i;
 }
 
 // other math operations
@@ -80,12 +136,36 @@ Rational operator-(Rational r1, Rational r2) {
   return r1 + -r2;
 }
 
+Rational operator-(Rational r, int i) {
+  return r - Rational(i);
+}
+
+Rational operator-(int i, Rational r) {
+  return Rational(i) - r;
+}
+
 Rational operator*(Rational r1, Rational r2) {
   return Rational(r1.get_numerator() * r2.get_numerator(), r1.get_denominator() * r2.get_denominator());
 }
 
+Rational operator*(Rational r, int i) {
+  return r * Rational(i);
+}
+
+Rational operator*(int i, Rational r) {
+  return r * i;
+}
+
 Rational operator/(Rational r1, Rational r2) {
   return r1 * Rational(r2.get_denominator(), r2.get_numerator());
+}
+
+Rational operator/(Rational r, int i) {
+  return r / Rational(i);
+}
+
+Rational operator/(int i, Rational r) {
+  return Rational(i) / r;
 }
 
 bool operator<(Rational r1, Rational r2) {
@@ -105,7 +185,7 @@ bool operator>=(Rational r1, Rational r2) {
 }
 
 bool operator==(Rational r1, Rational r2) {
-  return (r1 - r1).get_numerator() == 0;
+  return (r1 - r2).get_numerator() == 0;
 }
 
 bool operator!=(Rational r1, Rational r2) {
@@ -136,12 +216,6 @@ Rational Rational::operator++(int) {
 std::ostream& operator<<(std::ostream& strm, Rational r) {
   strm << r.str();
   return strm;
-}
-
-// the implementation of the + operator for int on the left side of the operator
-// we will use the implementation for Rational + i that we have already created
-Rational operator+(int i, Rational r) {
-  return r + i;
 }
 
 // gcd using recursion
