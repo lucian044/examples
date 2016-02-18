@@ -1,0 +1,7 @@
+#include "string.hpp"
+#include <iostream>
+
+int main() {
+  String x("tony");
+  std::cout << x << "has a length of " << x.length() << std::endl;
+}
