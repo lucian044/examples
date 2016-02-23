@@ -1,5 +1,5 @@
 // the in-class version of string
-// this will show dynamic memory allocation, 
+// this will show dynamic memory allocation,
 // copy constructors, and destructors
 
 #ifndef STRING_HPP
@@ -10,7 +10,7 @@
 class String {
 private:
 
-  int size; // the number of elements in the array
+  size_t size; // the number of elements in the array
   char* chars;  // this points to the beginning of the array after we make it
 
 public:
@@ -19,9 +19,18 @@ public:
   String(const char*); // creating a String from a cstring
   String(const String& s); // the copy constructor!
 
+  // destructor
+  // takes no arguments
+  // no return type
+  // called whenevr a String is destroyed
+  ~String();
+
   // member becuse it changes itself
   String& operator+=(String s);
-  
+
+  // equal should return a ref to ourself
+  String& operator=(String& s);
+
   // size accessor
   int get_size() { return size; }
   char* get_chars() { return chars; }
@@ -35,7 +44,6 @@ bool operator==(String s1, String s2);
 
 
 // otream overload declaration
-std::ostream& operator<<(std::ostream& strm, String s); 
+std::ostream& operator<<(std::ostream& strm, String& s);
 
 #endif
-
