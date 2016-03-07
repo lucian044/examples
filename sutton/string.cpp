@@ -3,7 +3,7 @@
 #include "string.hpp"
 
 String::String() 
-  : size{0}, str{nullptr}
+  : size{0}, str{strcpy(new char[1], "")}
 {}
 
 String::String(const char* c)

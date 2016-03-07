@@ -2,6 +2,9 @@
 #include "string.hpp"
 
 int main() {
+  String empty;
+  std::cout << "we didnt test an empty string but it had an error so here one is" << empty << std::endl;
+  
   String x("Tony");
   std::cout << x << std::endl; 
 
