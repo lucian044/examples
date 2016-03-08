@@ -12,12 +12,13 @@ private:
 
   size_t size; // the number of elements in the array
   char* chars;  // this points to the beginning of the array after we make it
-
+  void swap(String& s1); // used to swap the primative members
 public:
 
   String(); // the default constructor
   String(const char*); // creating a String from a cstring
   String(const String& s); // the copy constructor!
+  String(const String& s1, const String& s2); // constructor to concatenate two strings
 
   // destructor
   // takes no arguments
@@ -31,19 +32,25 @@ public:
   // equal should return a ref to ourself
   String& operator=(String& s);
 
+  // array index operator ([])
+  char& operator[](size_t index) { std::cout << "non const called " << std::endl; return chars[index]; }
+  char operator[](size_t index) const { std::cout << "const called " << std::endl; return chars[index]; }
+
   // size accessor
-  int get_size() { return size; }
-  char* get_chars() { return chars; }
+  int get_size() const { return size; }
+  char* get_chars() const { return chars; }
   void set_first(char c);
 };
 
 // overloaded operators
-String operator+(String s1, String s2);
+String operator+(const String& s1, const String& s2);
 
-bool operator==(String s1, String s2);
+bool operator==(const String& s1, const String& s2);
+bool operator!=(const String& s1, const String& s2);
 
+String concat(const String& s1, const String& s2, const char* c);
 
 // otream overload declaration
-std::ostream& operator<<(std::ostream& strm, String& s);
+std::ostream& operator<<(std::ostream& strm, const String& s);
 
 #endif
