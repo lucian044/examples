@@ -77,17 +77,17 @@ Rational& Rational::operator+=(Rational r) {
 }
 
 Rational& Rational::operator-=(Rational r) {
-  // see operator+= for 
+  // see operator+= for
   return (*this = *this - r);
 }
 
 Rational& Rational::operator*=(Rational r) {
-  // see operator+= for 
+  // see operator+= for
   return (*this = *this * r);
 }
 
 Rational& Rational::operator/=(Rational r) {
-  // see operator+= for 
+  // see operator+= for
   return (*this = *this / r);
 }
 
@@ -100,24 +100,24 @@ Rational& Rational::operator+=(int i) {
 }
 
 Rational& Rational::operator-=(int i) {
-  // see operator+= for 
+  // see operator+= for
   return (*this = *this - i);
 }
 
 Rational& Rational::operator*=(int i) {
-  // see operator+= for 
+  // see operator+= for
   return (*this = *this * i);
 }
 
 Rational& Rational::operator/=(int i) {
-  // see operator+= for 
+  // see operator+= for
   return (*this = *this / i);
 }
 
 
 
 Rational operator+(Rational r1, Rational r2) {
-  int cd = r1.get_denominator() * r2.get_denominator();  
+  int cd = r1.get_denominator() * r2.get_denominator();
   int new_num = (r1.get_numerator() * r2.get_denominator()) + (r2.get_numerator() * r1.get_denominator());
   return Rational(new_num, cd);
 }
@@ -133,42 +133,52 @@ Rational operator+(int i, Rational r) {
 // other math operations
 // these are outside the class so you dont need scope resolution, but you need two operands
 Rational operator-(Rational r1, Rational r2) {
+  // with operator+ and the unary operator- defined we can simply use these for subtraction
   return r1 + -r2;
 }
 
 Rational operator-(Rational r, int i) {
+  // turn the integer into a Rational using the single parameter constructor and use the operator- function
   return r - Rational(i);
 }
 
 Rational operator-(int i, Rational r) {
+  // see above
   return Rational(i) - r;
 }
 
 Rational operator*(Rational r1, Rational r2) {
+  // define the multiplcation and we can use it for division later
   return Rational(r1.get_numerator() * r2.get_numerator(), r1.get_denominator() * r2.get_denominator());
 }
 
 Rational operator*(Rational r, int i) {
+  // see operator+ with an integer
   return r * Rational(i);
 }
 
 Rational operator*(int i, Rational r) {
+  // see operator+ with an integer
   return r * i;
 }
 
 Rational operator/(Rational r1, Rational r2) {
+  // create a new Rational with the inverse of r2 and multiply
   return r1 * Rational(r2.get_denominator(), r2.get_numerator());
 }
 
 Rational operator/(Rational r, int i) {
+  // see operator+ with an integer
   return r / Rational(i);
 }
 
 Rational operator/(int i, Rational r) {
+  // see operator+ with an integer
   return Rational(i) / r;
 }
 
 bool operator<(Rational r1, Rational r2) {
+  // with subtraction defined we can use the comparison of the
   return (r1 - r2).get_numerator() < 0;
 }
 
@@ -198,7 +208,7 @@ Rational Rational::operator-() {
 }
 
 // prefix ++
-Rational Rational::operator++() {
+Rational& Rational::operator++() {
   *this = *this + Rational(1);
   return *this;
 }

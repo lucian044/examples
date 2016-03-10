@@ -69,7 +69,7 @@ public:
   /*
   this is how you COULD put the non instance changing operations inside the class
   and guarantee that the instance didnt get changed
-  
+
   // hpp section
   Rational operator+(double) const;
 
@@ -77,7 +77,7 @@ public:
   Rational Rational::operator+(double t) const {
   }
   */
-  
+
   // these return references to the calling instance for chaining operator purposes
   Rational& operator+=(Rational r);
   Rational& operator-=(Rational r);
@@ -96,7 +96,7 @@ public:
   // unary operators operate on a single operand
   Rational operator-();
   // prefix
-  Rational operator++();
+  Rational& operator++();
   // postfix, we have a dummy parameter to diferentiate between pre and post fix
   Rational operator++(int);
 
