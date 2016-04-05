@@ -7,6 +7,16 @@ cmake_minimum_required(VERSION 2.8)
 # means "C++".
 project(vector CXX)
 
+# Determine a usable set of sanitizer flags based on the compiler
+# and version. If sanitizers aren't supported, or we don't know if
+# they are supported, then set those flags to empty.
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "5")
+    set(SAN_FLAGS "-fsanitize=address -fsanitize=undefined")
+  endif()
+else()
+  set(SAN_FLAGS "")
+endif()
 
 # Update the C++ compiler flags so that we use C++14, not the older
 # version of the language, C++03. GCC-4.9, the default compiler in

@@ -16,6 +16,11 @@ Vector::Vector(const Vector& v) {
   for (String* temp = v.base; temp < v.last; new (last++) String(*(temp++)));  
 }
 
+Vector::~Vector() {
+  clear();
+  deallocate();
+}
+
 void* Vector::allocate(int capacity) {
   // takes the number of bytes that need to be allocated
   return ::operator new(capacity * sizeof(String));
@@ -82,6 +87,14 @@ void Vector::push_back(const char* c) {
     reserve(capacity() == 0 ? 8 : capacity() * 2);
 
   new (last++) String(c);
+}
+
+void Vector::pop_back() {
+  // make sure there is at least one element to pop off the back
+  assert(last != base);
+
+  // destroys the last element
+  (--last)->~String();
 }
 
 // return a copy of the last elemnt in the vector

@@ -34,6 +34,23 @@ public:
   Vector(int cap);
   Vector(const Vector& v);
 
+  // iterators
+  // we need to be able to use something like this:
+  // Vector::iterator it = v.begin();
+
+  using iterator = String*;
+  using const_iterator = String*;
+  // the function to return a pointer to the first element
+  iterator begin() { return base; }
+  iterator end() { return last; }
+  
+  // Vector::const_iterator it begin()
+  const_iterator begin() const { return base; }
+  const_iterator end() const { return last; }
+
+  // destructor
+  ~Vector();
+
   // the number of initialied elements
   size_t size() const { return last - base; }
 
@@ -51,6 +68,7 @@ public:
 
   void push_back(String s);
   void push_back(const char*);
+  void pop_back();
   String back();
 
 };
